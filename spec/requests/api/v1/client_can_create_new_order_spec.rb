@@ -18,9 +18,9 @@ RSpec.describe Api::V1::OrdersController, type: :request do
         end
     end
 
-    describe 'PUT /api/orders/:id' do
+    describe 'PUT /api/v1/orders/:id' do
         before do
-          put "/api/orders/#{@order.id}", params: { product_id: product_2.id }
+          put "/api/v1/orders/#{@order_id}", params: { product_id: product_2.id }
           @order = Order.find(@order_id)
         end
 
@@ -29,7 +29,7 @@ RSpec.describe Api::V1::OrdersController, type: :request do
         end
       
         it 'responds with order id' do
-            expect(JSON.parse(response.body)['order_id']).to eq order.id
+            expect(JSON.parse(response.body)['order_id']).to eq @order.id
         end
     end
 end
