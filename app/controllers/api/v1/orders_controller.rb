@@ -1,5 +1,4 @@
 class Api::V1::OrdersController < ApplicationController
-
   def create
     order = Order.create
     order.order_items.create(product_id: params[:product_id])

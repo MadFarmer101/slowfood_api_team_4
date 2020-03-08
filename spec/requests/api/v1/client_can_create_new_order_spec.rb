@@ -1,8 +1,8 @@
 require 'pry'
 
 RSpec.describe Api::V1::OrdersController, type: :request do
-    let!(:product_1) {create(:product, name: 'Risoto')}
-    let!(:product_2) {create(:product, name: 'Pasta')}
+    let!(:product_1) {create(:product, name: 'Risoto', price: 10)}
+    let!(:product_2) {create(:product, name: 'Pasta', price: 20)}
   
     before do
       post '/api/v1/orders', params: { product_id: product_1.id }
@@ -24,7 +24,7 @@ RSpec.describe Api::V1::OrdersController, type: :request do
           end
   
           it 'responds with right order total' do
-        expect(JSON.parse(response.body)['order']['total']).to eq 10
+        expect(JSON.parse(response.body)['order']['total']).to eq "10.0"
       end
     end
   
@@ -47,7 +47,7 @@ RSpec.describe Api::V1::OrdersController, type: :request do
       end
   
       it 'responds with right order total' do
-        expect(JSON.parse(response.body)['order']['total']).to eq 50
+        expect(JSON.parse(response.body)['order']['total']).to eq "50.0"
       end
     end
   end

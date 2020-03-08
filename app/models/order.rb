@@ -1,4 +1,7 @@
 class Order < ApplicationRecord
     has_many :order_items
-    
-end
+  
+    def order_total
+      order_items.joins(:product).sum('products.price')
+    end
+  end

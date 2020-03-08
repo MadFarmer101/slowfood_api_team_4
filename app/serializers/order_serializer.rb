@@ -1,5 +1,5 @@
 class OrderSerializer < ActiveModel::Serializer
-  attributes :id, :products
+  attributes :id, :products, :total, :order_total
 
   def products
     products = []
@@ -9,5 +9,9 @@ class OrderSerializer < ActiveModel::Serializer
       products.push hash
     end
     products
+  end
+
+  def total
+    object.order_items.joins(:product).sum('products.price')
   end
 end
