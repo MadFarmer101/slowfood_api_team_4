@@ -24,7 +24,7 @@ RSpec.describe Api::V1::OrdersController, type: :request do
           end
   
           it 'responds with right order total' do
-        expect(JSON.parse(response.body)['order']['total']).to eq 10
+        expect(JSON.parse(response.body)['order']['total']).to eq "10.0"
       end
     end
   
@@ -47,7 +47,7 @@ RSpec.describe Api::V1::OrdersController, type: :request do
       end
   
       it 'responds with right order total' do
-        expect(JSON.parse(response.body)['order']['total']).to eq 50
+        expect(JSON.parse(response.body)['order']['total']).to eq "50.0"
       end
     end
   end
