@@ -12,10 +12,10 @@ class Api::V1::OrdersController < ApplicationController
     render json: create_json_response(order)
   end
 
-  private
+ private
 
-  def create_json_response(order)
-    json = {}
-    json[:message] = 'The product has been added to your order'
+ def create_json_response(order)
+  json = { order: OrderSerializer.new(order) }
+  json.merge!(message: 'The product has been added to your order')
   end
 end

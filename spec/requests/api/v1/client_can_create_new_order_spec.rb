@@ -1,6 +1,8 @@
+require 'pry'
+
 RSpec.describe Api::V1::OrdersController, type: :request do
-    let!(:product_1) { create(:product, name: 'Pizza', price: 10) }
-    let!(:product_2) { create(:product, name: 'Kebab', price: 20) }
+    let!(:product_1) {create(:product, name: 'Risoto', price: 10)}
+    let!(:product_2) {create(:product, name: 'Pasta', price: 20)}
   
     before do
       post '/api/v1/orders', params: { product_id: product_1.id }
@@ -8,7 +10,7 @@ RSpec.describe Api::V1::OrdersController, type: :request do
       @order = Order.find(order_id)
     end
   
-    describe 'POST /api/orders' do
+    describe 'POST /api/v1/orders' do
       it 'responds with success message' do
         expect(JSON.parse(response.body)['message']).to eq 'The product has been added to your order'
       end
@@ -26,7 +28,7 @@ RSpec.describe Api::V1::OrdersController, type: :request do
       end
     end
   
-    describe 'PUT /api/orders/:id' do
+    describe 'PUT /api/v1/orders:id' do
       before do
         put "/api/v1/orders/#{@order.id}", params: { product_id: product_2.id }
         put "/api/v1/orders/#{@order.id}", params: { product_id: product_2.id }
@@ -39,5 +41,13 @@ RSpec.describe Api::V1::OrdersController, type: :request do
       it 'responds with order id' do
         expect(JSON.parse(response.body)['order']['id']).to eq @order.id
       end
+  
+      it 'responds with right amount of unique products' do
+        expect(JSON.parse(response.body)['order']['products'].count).to eq 2
+      end
+  
+      it 'responds with right order total' do
+        expect(JSON.parse(response.body)['order']['total']).to eq 50
+      end
     end
-end
+  end
