@@ -1,4 +1,7 @@
 # The Slowfood Challenge 
+[![Build Status](https://semaphoreci.com/api/v1/jaimecrz/slowfood_api_team_4/branches/dependabot-bundler-puma-3-12-4/badge.svg)](https://semaphoreci.com/jaimecrz/slowfood_api_team_4)
+[![Coverage Status](https://coveralls.io/repos/github/CraftAcademy/slowfood_api_team_4/badge.svg?branch=demo)](https://coveralls.io/github/CraftAcademy/slowfood_api_team_4?branch=demo)
+
 ### Authors
 [Janko Radakovic](https://github.com/MadFarmer101)  
 [Jaime Cruz Hostalot](https://github.com/JaimeCrz)  
